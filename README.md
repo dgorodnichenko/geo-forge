@@ -245,6 +245,6 @@ Content-Type: application/json
 #### Example response:
 The API uses standard HTTP status codes:
 
-200: Success
-400: Bad Request (invalid input)
-500: Internal Server Error
+- 200: Success
+- 400: Bad Request (invalid input)
+- 500: Internal Server Error
