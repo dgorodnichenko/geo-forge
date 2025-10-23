@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ConversionService } from './conversion.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { sendFileResponse } from './response/response';

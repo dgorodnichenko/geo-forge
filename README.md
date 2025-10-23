@@ -1,98 +1,250 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Geospatial Data Processing Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A NestJS-based backend service for processing geospatial data, specializing in file format conversion, road geometry extraction and quadkey generation.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **KMZ to GeoJSON Conversion** – Convert KMZ files to GeoJSON format for easier processing and visualization
+- **Road Geometry Extraction** – Extract road coordinates and geometry data from geospatial files
+- **Quadkey Generation** –Generate quadkeys for geospatial indexing using integrated Python scripts
+- **Validation** – using `class-validator` and `class-transformer`  
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## Tech Stack
 
-## Compile and run the project
+- [NestJS](https://nestjs.com/)  
+- [Scripting](https://www.python.org) 
+- [TypeScript](https://www.typescriptlang.org/)  
+---
 
-```bash
-# development
-$ npm run start
+## Prerequisites
 
-# watch mode
-$ npm run start:dev
+Before running this application, ensure you have the following installed:
 
-# production mode
-$ npm run start:prod
-```
+- Node.js
+- npm or yarn
+- Python
+- pip (Python package manager)
 
-## Run tests
+---
+
+## Installation
+
+
+Clone the repo and install dependencies:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone <repository-url>
+cd project-directory
+npm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+Install Python dependencies:
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+pip install -r requirements.txt
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Running the app
+For development use the following command:
+```bash
+npm run start:dev
+```
+For production use the following commands:
+```
+npm run build
+npm run start:prod
+```
 
-## Resources
+## API usage
+Base URL:
+```bash
+http://localhost:3000
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### Endpoints
+1. Convert KMZ files to GeoJSON format
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+#### Endpoint: `POST /conversion/kmz-to-geojson`
+#### URL:
+```bash
+http://localhost:3000/conversion/kmz-to-geojson
+```
 
-## Support
+#### Request:
+Content-Type: multipart/form-data  
+Body: KMZ file upload
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### Example response:
+```bash
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-55.892154, -27.395646, 0],
+            [-55.90495, -27.39405, 0],
+            [-55.90361, -27.384005, 0],
+            [-55.892154, -27.395646, 0]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Chacras 32-33",
+        "description": "Chacras 32-33...",
+        "stroke": "#0288d1",
+        "stroke-opacity": 1,
+        "fill": "#0288d1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.891296, -27.366541, 0]
+      },
+      "properties": {
+        "name": "Sede Central",
+        "icon": "images/icon-1.png"
+      }
+    }
+  ]
+}
+```
+#### 2. Road Geometry Extraction
+Extracts road geometry between two points
+#### Endpoint: `POST /road-geometry/calculate`
+#### URL:
+```bash
+http://localhost:3000/road-geometry/calculate
+```
+#### Headers:
+```bash
+Content-Type: application/json
+```
+#### Request body:
+```bash
+{
+    "startLat": 40.720879615197745,
+    "startLng": -74.0812911143682,
+    "endLat": 40.719451964779815,
+    "endLng": -74.07779577565537
+}
+```
 
-## Stay in touch
+#### Example response:
+```bash
+{
+    "success": true
+    "data": 
+        [
+            40.7208803,
+            -74.0813521
+        ],
+        [
+            40.72083642727272,
+            -74.0812453878788
+        ],
+        [
+            40.720792554545454,
+            -74.08113867575759
+        ],
+        [
+            40.72074868181818,
+            -74.08103196363636
+        ],
+        [
+            40.720704809090904,
+            -74.08092525151515
+        ],
+      "count": 5  
+}
+```
+#### Example error response
+```bash
+{
+    "message": [
+        "startLat must not be less than -90"
+    ],
+    "error": "Bad Request",
+    "statusCode": 400
+}
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+#### 3. Quadkey Generation
+Generates quadkeys for geospatial indexing using integrated Python scripts.
+#### Endpoint: `POST /quadkeys/generate`
+#### URL:
+```bash
+http://localhost:3000/quadkeys/generate
+```
 
-## License
+#### Headers:
+```bash
+Content-Type: application/json
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+#### Request body example:
+```bash
+{
+    "city": "New York",
+    "zoom": 10
+}
+```
+
+#### Example response:
+```bash
+{
+    "success": true,
+    "data": {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [
+                                -74.1796875,
+                                40.71395582628604
+                            ],
+                            [
+                                -74.1796875,
+                                40.97989806962013
+                            ],
+                            [
+                                -74.53125,
+                                40.97989806962013
+                            ],
+                            [
+                                -74.53125,
+                                40.71395582628604
+                            ],
+                            [
+                                -74.1796875,
+                                40.71395582628604
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "quadkey": "0320101100"
+                }
+            }
+        ]
+}
+```
+
+#### Example response:
+The API uses standard HTTP status codes:
+
+200: Success
+400: Bad Request (invalid input)
+500: Internal Server Error
